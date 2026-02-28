@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>株式会社TAKER - BUSON STUDIO</title>
+    <meta name="description"
+        content="株式会社TAKER - BUSON STUDIOを運営。SNS総フォロワー400万人超のクリエイターBUSONによるイラスト制作、キャラクターデザイン、SNSマーケティング。">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0a1628;
+            --navy-light: #131f36;
+            --navy-mid: #1a2a45;
+            --gold: #c9a84c;
+            --gold-light: #e8d491;
+            --gold-dark: #a88a32;
+            --white: #f5f5f5;
+            --white-pure: #ffffff;
+            --gray: #8a9ab5;
+            --gray-light: #b8c5d8;
+            --text-body: #ccd6e6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background: var(--navy);
+            color: var(--text-body);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* ===== ナビゲーション ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 12px 40px;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white-pure);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .nav-hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--white-pure);
+            transition: all 0.3s;
+        }
+
+        /* ===== ヒーローセクション ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(26, 42, 69, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(201, 168, 76, 0.05) 0%, transparent 40%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            color: var(--white-pure);
+            line-height: 1.2;
+            margin-bottom: 16px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero h1 .gold {
+            color: var(--gold);
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 48px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--navy);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201, 168, 76, 0.35);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--gray);
+            color: var(--white-pure);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* ===== セクション共通 ===== */
+        section {
+            padding: 100px 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            display: inline-block;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white-pure);
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== サービスセクション ===== */
+        #services {
+            background: var(--navy-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--navy-mid);
+            border-radius: 16px;
+            padding: 40px 32px;
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(201, 168, 76, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.15), rgba(201, 168, 76, 0.05));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--gold);
+            font-size: 1.4rem;
+        }
+
+        .service-card h3 {
+            color: var(--white-pure);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* ===== 数字セクション ===== */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 64px;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-number span {
+            font-size: 1.2rem;
+            color: var(--gold-light);
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        /* ===== 会社概要セクション ===== */
+        #about {
+            background: var(--navy-light);
+        }
+
+        .about-table {
+            max-width: 700px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .about-table tr {
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        }
+
+        .about-table th {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 20px 24px 20px 0;
+            text-align: left;
+            white-space: nowrap;
+            vertical-align: top;
+            width: 120px;
+        }
+
+        .about-table td {
+            padding: 20px 0;
+            color: var(--text-body);
+            font-size: 0.95rem;
+        }
+
+        .about-table a {
+            color: var(--gold-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .about-table a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== お問い合わせセクション ===== */
+        #contact {
+            background: var(--navy);
+        }
+
+        .contact-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-group label .required {
+            color: var(--gold);
+            margin-left: 4px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--navy-light);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            border-radius: 10px;
+            color: var(--white-pure);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%238a9ab5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            cursor: pointer;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .form-submit .btn {
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .success-message {
+            color: #4ade80;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px;
+        }
+
+        .error-message {
+            color: #f87171;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px;
+        }
+
+        .error-message a {
+            color: var(--gold);
+        }
+
+        .form-fallback {
+            text-align: center;
+            margin-top: 16px;
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        .form-fallback a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        /* ===== フッター ===== */
+        .footer {
+            background: var(--navy-light);
+            padding: 48px 40px 32px;
+            text-align: center;
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+        }
+
+        .footer-brand {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white-pure);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand span {
+            color: var(--gold);
+        }
+
+        .footer-company {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-copy {
+            color: rgba(138, 154, 181, 0.5);
+            font-size: 0.75rem;
+        }
+
+        /* ===== アニメーション ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== レスポンシブ ===== */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 22, 40, 0.98);
+                flex-direction: column;
+                padding: 24px;
+                gap: 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+                min-height: auto;
+            }
+
+            .stats {
+                gap: 32px;
+                padding: 60px 20px;
+            }
+
+            .stat-number {
+                font-size: 2.2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ナビゲーション -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">BUSON <span>STUDIO</span></a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#services">サービス</a></li>
+            <li><a href="#about">会社概要</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+        <div class="nav-hamburger" id="hamburger"
+            onclick="document.getElementById('nav-links').classList.toggle('active')">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- ヒーロー -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">TAKER Inc.</div>
+            <h1>クリエイティブで<br><span class="gold">ビジネスを動かす</span></h1>
+            <p class="hero-sub">SNS総フォロワー400万人超のクリエイターBUSONが率いる<br>株式会社TAKERのコーポレートサイト</p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary"><i class="fas fa-envelope"></i> お問い合わせ</a>
+                <a href="https://buson2025.com" class="btn btn-outline" target="_blank"><i
+                        class="fas fa-external-link-alt"></i> BUSON STUDIO</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数字で見る実績 -->
+    <div class="stats">
+        <div class="stat-item animate-on-scroll">
+            <div class="stat-number">400<span>万+</span></div>
+            <div class="stat-label">SNS総フォロワー</div>
+        </div>
+        <div class="stat-item animate-on-scroll">
+            <div class="stat-number">2018<span>年〜</span></div>
+            <div class="stat-label">設立</div>
+        </div>
+        <div class="stat-item animate-on-scroll">
+            <div class="stat-number">500<span>件+</span></div>
+            <div class="stat-label">制作実績</div>
+        </div>
+    </div>
+
+    <!-- サービス -->
+    <section id="services">
+        <div class="section-header animate-on-scroll">
+            <div class="section-label">Services</div>
+            <h2 class="section-title">事業内容</h2>
+            <p class="section-desc">イラスト制作からSNSマーケティングまで、クリエイティブの力でビジネスを支援します</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-palette"></i></div>
+                <h3>イラスト・キャラクター制作</h3>
+                <p>広告、パッケージ、Webサイト向けのオリジナルイラスト・キャラクターデザインを制作します。</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
+                <h3>SNSマーケティング</h3>
+                <p>400万フォロワーの運用ノウハウを活かし、バズるコンテンツ戦略を提案・実行します。</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-book-open"></i></div>
+                <h3>漫画・コンテンツ制作</h3>
+                <p>商品PR漫画、ストーリーコンテンツ、YouTubeアニメーションなどを企画制作します。</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-certificate"></i></div>
+                <h3>キャラクターライセンス</h3>
+                <p>BUSONオリジナルキャラクターのライセンス使用。グッズ、広告、コラボ企画にご活用ください。</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-handshake"></i></div>
+                <h3>タイアップ・コラボ</h3>
+                <p>企業・自治体・イベントとのコラボレーション企画。集客力のあるコンテンツを共創します。</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>デジタルソリューション</h3>
+                <p>AIを活用したクリエイティブツールの開発・提供。BaseOneAIプラットフォームを運営。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 会社概要 -->
+    <section id="about">
+        <div class="section-header animate-on-scroll">
+            <div class="section-label">Company</div>
+            <h2 class="section-title">会社概要</h2>
+        </div>
+        <table class="about-table animate-on-scroll">
+            <tr>
+                <th>会社名</th>
+                <td>株式会社TAKER</td>
+            </tr>
+            <tr>
+                <th>ブランド名</th>
+                <td>BUSON STUDIO</td>
+            </tr>
+            <tr>
+                <th>代表者</th>
+                <td>代表取締役　福田 武尊</td>
+            </tr>
+            <tr>
+                <th>設立</th>
+                <td>2018年 12月</td>
+            </tr>
+            <tr>
+                <th>所在地</th>
+                <td>
+                    〒810-0001<br>
+                    福岡県福岡市中央区天神2丁目3-10<br>
+                    天神パインクレスト716
+                </td>
+            </tr>
+            <tr>
+                <th>事業内容</th>
+                <td>
+                    イラスト・キャラクター制作<br>
+                    SNSマーケティング<br>
+                    漫画・コンテンツ制作<br>
+                    キャラクターライセンス事業<br>
+                    デジタルソリューション開発
+                </td>
+            </tr>
+            <tr>
+                <th>Web</th>
+                <td><a href="https://buson2025.com" target="_blank">https://buson2025.com</a></td>
+            </tr>
+            <tr>
+                <th>メール</th>
+                <td><a href="mailto:buson@takerbiz.com">buson@takerbiz.com</a></td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section id="contact">
+        <div class="section-header animate-on-scroll">
+            <div class="section-label">Contact</div>
+            <h2 class="section-title">お問い合わせ</h2>
+            <p class="section-desc">サービスに関するご質問、お見積りのご依頼など、お気軽にご連絡ください</p>
+        </div>
+        <div class="contact-wrapper animate-on-scroll">
+            <form id="contact-form"
+                action="https://script.google.com/macros/s/AKfycbwHRHDlEwm0iG1xKYNnYlCwy1LZwsqD0wuxJ16JgarN32iENsDWiwhYed7tajNKCcnM/exec"
+                method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>会社名</label>
+                        <input type="text" id="company" name="company" placeholder="株式会社○○">
+                    </div>
+                    <div class="form-group">
+                        <label>お名前<span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required placeholder="山田 太郎">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>メールアドレス<span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="info@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>電話番号</label>
+                        <input type="tel" id="phone" name="phone" placeholder="03-1234-5678">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>ご興味のある分野<span class="required">*</span></label>
+                    <select id="service" name="service" required>
+                        <option value="">選択してください</option>
+                        <option value="イラスト・キャラクター制作">イラスト・キャラクター制作</option>
+                        <option value="SNSマーケティング">SNSマーケティング</option>
+                        <option value="漫画・コンテンツ制作">漫画・コンテンツ制作</option>
+                        <option value="キャラクターライセンス">キャラクターライセンス</option>
+                        <option value="タイアップ・コラボ">タイアップ・コラボ</option>
+                        <option value="その他">その他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>お問い合わせ内容<span class="required">*</span></label>
+                    <textarea id="message" name="message" required placeholder="ご依頼内容やご質問など、お気軽にお書きください"></textarea>
+                </div>
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> 送信する</button>
+                </div>
+                <p class="form-fallback">
+                    ※送信時にエラーが出た場合は <a href="mailto:buson@takerbiz.com">buson@takerbiz.com</a> まで直接ご連絡ください
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-brand">BUSON <span>STUDIO</span></div>
+        <div class="footer-company">株式会社TAKER</div>
+        <div class="footer-links">
+            <a href="#services">サービス</a>
+            <a href="#about">会社概要</a>
+            <a href="#contact">お問い合わせ</a>
+            <a href="https://buson2025.com" target="_blank">BUSON STUDIO サイト</a>
+        </div>
+        <div class="footer-copy">&copy; 2025 TAKER Inc. All rights reserved.</div>
+    </footer>
+
+    <script>
+        // ナビゲーションスクロール効果
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // スクロールアニメーション
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // フォーム送信（Google Apps Script）
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const formSubmit = document.querySelector('.form-submit');
+                const formButton = formSubmit.querySelector('.btn');
+                const originalHTML = formButton.innerHTML;
+
+                formButton.disabled = true;
+                formButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
+
+                const formData = {
+                    company: document.getElementById('company').value,
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    category: 'takerbiz.comフォーム',
+                    service: document.getElementById('service').value,
+                    message: document.getElementById('message').value
+                };
+
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                    .then(() => {
+                        formSubmit.innerHTML = '<div class="success-message"><i class="fas fa-check-circle"></i> お問い合わせありがとうございます。担当者より折り返しご連絡いたします。</div>';
+                        contactForm.reset();
+                        setTimeout(() => {
+                            formSubmit.innerHTML = `<button type="submit" class="btn btn-primary">${originalHTML}</button>`;
+                        }, 5000);
+                    })
+                    .catch(() => {
+                        formSubmit.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-circle"></i> 送信に失敗しました。<a href="mailto:buson@takerbiz.com">buson@takerbiz.com</a> まで直接ご連絡ください。</div>';
+                        setTimeout(() => {
+                            formSubmit.innerHTML = `<button type="submit" class="btn btn-primary">${originalHTML}</button>`;
+                        }, 5000);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
