@@ -423,6 +423,37 @@
             margin-top: 4px;
         }
 
+        .ceo-profile-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 32px;
+            padding: 11px 24px;
+            border: 1px solid var(--ink-soft);
+            border-radius: 100px;
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+        }
+
+        .ceo-profile-link:hover {
+            background: var(--ink);
+            color: var(--paper);
+            border-color: var(--ink);
+        }
+
+        .ceo-profile-link .arrow {
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .ceo-profile-link:hover .arrow {
+            transform: translateX(3px);
+        }
+
         /* ===== 会社概要 ===== */
         .about {
             background: var(--paper-warm);
@@ -870,6 +901,10 @@
         <div class="ceo-line"></div>
         <p class="ceo-name">福田 武尊</p>
         <p class="ceo-title">株式会社TAKER 代表取締役</p>
+        <a href="/about.html" class="ceo-profile-link">
+            プロフィール詳細
+            <span class="arrow">→</span>
+        </a>
     </section>
 
     <svg class="wave-divider" viewBox="0 0 1440 60" preserveAspectRatio="none">
