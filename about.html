@@ -450,6 +450,15 @@ body {
 .bio-toggle[open] .bio-toggle-icon {
   transform: rotate(45deg);
 }
+.presskit-sub-label {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  margin: 36px 0 20px;
+  position: relative;
+  z-index: 2;
+}
 
 /* Press Bio */
 .press-bio {
@@ -762,7 +771,7 @@ footer {
 
   <details class="bio-toggle">
     <summary>
-      <span class="bio-toggle-label">BIO&nbsp;&nbsp;/&nbsp;&nbsp;メディア掲載用プロフィール</span>
+      <span class="bio-toggle-label">PRESS KIT&nbsp;&nbsp;/&nbsp;&nbsp;メディア掲載用</span>
       <span class="bio-toggle-icon">+</span>
     </summary>
 
@@ -804,13 +813,8 @@ footer {
       </div>
     </div>
   </div>
-  </details>
 
-  <details class="bio-toggle">
-    <summary>
-      <span class="bio-toggle-label">DOWNLOAD&nbsp;&nbsp;/&nbsp;&nbsp;プロフィール画像</span>
-      <span class="bio-toggle-icon">+</span>
-    </summary>
+  <div class="presskit-sub-label">プロフィール画像</div>
 
   <div class="downloads">
     <a href="images/buson-profile.jpg" download class="download-card">
