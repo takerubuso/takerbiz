@@ -415,6 +415,42 @@ body {
   margin-top: 4px;
 }
 
+/* Bio toggle (collapsible BIO section) */
+.bio-toggle {
+  position: relative;
+  z-index: 2;
+}
+.bio-toggle summary {
+  list-style: none;
+  cursor: pointer;
+  text-align: center;
+  margin: 64px 0 28px;
+  padding: 8px 0;
+  transition: opacity 0.2s;
+}
+.bio-toggle summary::-webkit-details-marker { display: none; }
+.bio-toggle summary:hover { opacity: 0.7; }
+.bio-toggle-label {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  margin-right: 12px;
+  vertical-align: middle;
+}
+.bio-toggle-icon {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--muted);
+  width: 16px;
+  text-align: center;
+  transition: transform 0.3s;
+  vertical-align: middle;
+}
+.bio-toggle[open] .bio-toggle-icon {
+  transform: rotate(45deg);
+}
+
 /* Press Bio */
 .press-bio {
   background: var(--node-bg);
@@ -724,7 +760,11 @@ footer {
     </a>
   </div>
 
-  <div class="section-label"><span>BIO&nbsp;&nbsp;/&nbsp;&nbsp;メディア掲載用プロフィール</span></div>
+  <details class="bio-toggle">
+    <summary>
+      <span class="bio-toggle-label">BIO&nbsp;&nbsp;/&nbsp;&nbsp;メディア掲載用プロフィール</span>
+      <span class="bio-toggle-icon">+</span>
+    </summary>
 
   <div class="press-bio">
     <p class="press-bio-note">取材・メディアでご紹介いただく際は、用途に応じて以下のプロフィールをご利用ください。</p>
@@ -764,6 +804,7 @@ footer {
       </div>
     </div>
   </div>
+  </details>
 
   <div class="section-label"><span>DOWNLOAD&nbsp;&nbsp;/&nbsp;&nbsp;プロフィール画像</span></div>
 
