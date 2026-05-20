@@ -527,9 +527,89 @@
             margin-bottom: 48px;
         }
 
-        .contact-form {
+        .contact-sub {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--ink-soft);
+            margin-bottom: 36px;
+        }
+
+        .contact-mail-block {
             max-width: 480px;
             margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-mail-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--ink);
+            color: var(--paper);
+            text-decoration: none;
+            padding: 16px 36px;
+            border-radius: 100px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+
+        .contact-mail-btn:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-mail-btn .arr {
+            transition: transform 0.25s;
+        }
+
+        .contact-mail-btn:hover .arr {
+            transform: translateX(4px);
+        }
+
+        .contact-mail-display {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            padding: 8px 14px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 100px;
+        }
+
+        .mail-text {
+            font-size: 0.82rem;
+            color: var(--ink-light);
+            font-family: monospace;
+            letter-spacing: 0.02em;
+        }
+
+        .mail-copy-btn {
+            background: transparent;
+            border: 1px solid var(--ink-soft);
+            color: var(--ink-soft);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            cursor: pointer;
+            font-family: monospace;
+            transition: all 0.2s;
+        }
+
+        .mail-copy-btn:hover {
+            background: var(--ink);
+            color: var(--paper);
+            border-color: var(--ink);
+        }
+
+        .mail-copy-btn.copied {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
         }
 
         .field {
@@ -946,46 +1026,19 @@
     <section class="contact" id="contact">
         <p class="contact-label reveal">CONTACT</p>
         <h2 class="contact-title reveal">お問い合わせ</h2>
-        <form class="contact-form reveal" id="contact-form"
-            action="https://script.google.com/macros/s/AKfycbwHRHDlEwm0iG1xKYNnYlCwy1LZwsqD0wuxJ16JgarN32iENsDWiwhYed7tajNKCcnM/exec">
-            <div class="field-row">
-                <div class="field">
-                    <label>会社名</label>
-                    <input type="text" id="company" placeholder="株式会社○○">
-                </div>
-                <div class="field">
-                    <label>お名前<span class="req">*</span></label>
-                    <input type="text" id="name" required placeholder="山田 太郎">
-                </div>
+        <p class="contact-sub reveal">ご依頼・取材・コラボはこちらから</p>
+
+        <div class="contact-mail-block reveal">
+            <a class="contact-mail-btn"
+               href="mailto:buson@takerbiz.com?subject=%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%20-%20%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BETAKER&body=%E3%81%94%E4%BE%9D%E9%A0%BC%E3%83%BB%E3%81%94%E8%B3%AA%E5%95%8F%E5%86%85%E5%AE%B9%E3%82%92%E3%81%94%E8%A8%98%E5%85%A5%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%0A%0A%E2%97%8B%E3%81%8A%E5%90%8D%E5%89%8D%EF%BC%9A%0A%E2%97%8B%E4%BC%9A%E7%A4%BE%E5%90%8D%EF%BC%9A%0A%E2%97%8B%E3%81%94%E8%88%88%E5%91%B3%E3%81%AE%E4%BA%8B%E6%A5%AD%EF%BC%9A%0A%E2%97%8B%E3%81%94%E7%94%A8%E4%BB%B6%EF%BC%9A%0A">
+                <span>メールで問い合わせる</span>
+                <span class="arr">→</span>
+            </a>
+            <div class="contact-mail-display">
+                <span class="mail-text" id="mail-text">buson@takerbiz.com</span>
+                <button class="mail-copy-btn" type="button" onclick="copyMail(this)">COPY</button>
             </div>
-            <div class="field-row">
-                <div class="field">
-                    <label>メールアドレス<span class="req">*</span></label>
-                    <input type="email" id="email" required placeholder="info@example.com">
-                </div>
-                <div class="field">
-                    <label>電話番号</label>
-                    <input type="tel" id="phone" placeholder="03-1234-5678">
-                </div>
-            </div>
-            <div class="field">
-                <label>ご興味のある事業<span class="req">*</span></label>
-                <select id="service" required>
-                    <option value="">選択してください</option>
-                    <option value="BUSON STUDIO">BUSON STUDIO（クリエイティブ）</option>
-                    <option value="BaseOneAI">BaseOneAI（テクノロジー）</option>
-                    <option value="その他">その他</option>
-                </select>
-            </div>
-            <div class="field">
-                <label>お問い合わせ内容<span class="req">*</span></label>
-                <textarea id="msg" required placeholder="ご依頼内容やご質問など"></textarea>
-            </div>
-            <div class="submit-area" id="submit-area">
-                <button type="submit" class="submit-btn">送信する</button>
-            </div>
-            <p class="submit-note">エラー時は <a href="mailto:buson@takerbiz.com">buson@takerbiz.com</a> まで</p>
-        </form>
+        </div>
     </section>
 
     <footer class="foot">
@@ -1014,32 +1067,20 @@
             document.getElementById('mob-menu').classList.toggle('open');
         }
 
-        const form = document.getElementById('contact-form');
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const area = document.getElementById('submit-area');
-            const btn = area.querySelector('.submit-btn');
-            if (btn) { btn.disabled = true; btn.textContent = '送信中…'; }
-            const data = {
-                company: document.getElementById('company').value,
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                category: 'takerbiz.comフォーム',
-                service: document.getElementById('service').value,
-                message: document.getElementById('msg').value
-            };
-            fetch(form.action, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-                .then(() => {
-                    area.innerHTML = '<div class="ok-msg">ありがとうございます。折り返しご連絡いたします。</div>';
-                    form.reset();
-                    setTimeout(() => { area.innerHTML = '<button type="submit" class="submit-btn">送信する</button>'; }, 5000);
-                })
-                .catch(() => {
-                    area.innerHTML = '<div class="ng-msg">送信に失敗しました。<a href="mailto:buson@takerbiz.com">メール</a>でご連絡ください。</div>';
-                    setTimeout(() => { area.innerHTML = '<button type="submit" class="submit-btn">送信する</button>'; }, 5000);
-                });
-        });
+        function copyMail(btn) {
+            const text = document.getElementById('mail-text').textContent.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                btn.classList.add('copied');
+                btn.textContent = 'COPIED';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.textContent = 'COPY';
+                }, 1800);
+            }).catch(() => {
+                btn.textContent = 'FAILED';
+                setTimeout(() => { btn.textContent = 'COPY'; }, 1800);
+            });
+        }
     </script>
 </body>
 
