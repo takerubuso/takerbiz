@@ -650,6 +650,19 @@ body {
   color: var(--text);
   border-top: 1px dashed var(--line);
 }
+.leaf-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+.leaf-thumb {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 .leaf .arrow {
   color: var(--muted);
   transition: transform 0.2s, color 0.2s;
@@ -801,10 +814,16 @@ footer {
     </summary>
     <div class="branch-body">
       <a href="https://buson2025.com/" class="leaf" target="_blank" rel="noopener">
-        <span>BUSON STUDIO（IP企画 / マンガアニメ制作 / 広告）</span><span class="arrow">→</span>
+        <span class="leaf-main">
+          <img class="leaf-thumb" src="images/buson-studio-logo.png" alt="">
+          <span>BUSON STUDIO（IP企画 / マンガアニメ制作 / 広告）</span>
+        </span><span class="arrow">→</span>
       </a>
       <a href="https://baseoneai.com/" class="leaf" target="_blank" rel="noopener">
-        <span>BaseOne AI（クリエイティブAI）</span><span class="arrow">→</span>
+        <span class="leaf-main">
+          <img class="leaf-thumb" src="images/baseone-logo.svg" alt="">
+          <span>BaseOne AI（クリエイティブAI）</span>
+        </span><span class="arrow">→</span>
       </a>
     </div>
   </details>
